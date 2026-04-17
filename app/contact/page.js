@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Reveal from '@/components/Reveal';
 
 export default function ContactPage() {
     return (
@@ -14,7 +15,7 @@ export default function ContactPage() {
 
             {/* Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-32">
-                <div className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
+                <Reveal className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
                     <span className="material-symbols-outlined text-primary text-3xl mb-6 block">location_on</span>
                     <h3 className="text-xl font-bold text-on-surface mb-4 tracking-tight">Location</h3>
                     <p className="text-on-surface-variant text-sm leading-relaxed">
@@ -22,9 +23,9 @@ export default function ContactPage() {
                         Singapore Management University<br />
                         80 Stamford Road, Singapore 178902
                     </p>
-                </div>
+                </Reveal>
 
-                <div className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
+                <Reveal className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200" delay={80}>
                     <span className="material-symbols-outlined text-primary text-3xl mb-6 block">mail</span>
                     <h3 className="text-xl font-bold text-on-surface mb-4 tracking-tight">Email</h3>
                     <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
@@ -39,9 +40,9 @@ export default function ContactPage() {
                         Prof. Liao&apos;s Homepage
                         <span className="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
-                </div>
+                </Reveal>
 
-                <div className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
+                <Reveal className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200" delay={140}>
                     <span className="material-symbols-outlined text-primary text-3xl mb-6 block">school</span>
                     <h3 className="text-xl font-bold text-on-surface mb-4 tracking-tight">Join Us</h3>
                     {/* <p className="text-on-surface-variant text-sm leading-relaxed mb-4">
@@ -60,9 +61,9 @@ export default function ContactPage() {
                     >
                         Apply for PhD
                     </a>
-                </div>
+                </Reveal>
 
-                <div className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
+                <Reveal className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200" delay={220}>
                     <span className="material-symbols-outlined text-primary text-3xl mb-6 block">link</span>
                     <h3 className="text-xl font-bold text-on-surface mb-4 tracking-tight">Links</h3>
                     <div className="flex flex-col gap-3">
@@ -79,12 +80,12 @@ export default function ContactPage() {
                             Singapore Management University
                         </a>
                     </div>
-                </div>
+                </Reveal>
             </div>
 
             {/* Lab Reports CTA */}
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center pt-20 border-t border-zinc-200/50 max-w-4xl mx-auto">
-                <div>
+                <Reveal>
                     <h2 className="text-3xl font-bold text-on-surface mb-6">Visit Us</h2>
                     <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
                         We welcome visitors and potential collaborators. Please reach out to arrange a meeting.
@@ -93,8 +94,8 @@ export default function ContactPage() {
                         <span className="material-symbols-outlined text-blue-600">location_on</span>
                         80 Stamford Road, Singapore 178902
                     </div>
-                </div>
-                <div className="bg-zinc-50 rounded-2xl p-8 border border-zinc-200/30">
+                </Reveal>
+                <Reveal className="bg-zinc-50 rounded-2xl p-8 border border-zinc-200/30" delay={100}>
                     <h3 className="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-4">Quick Links</h3>
                     <div className="flex flex-col gap-3">
                         <Link href="/team" className="text-sm text-zinc-700 hover:text-primary transition-colors font-medium flex items-center gap-2">
@@ -110,7 +111,7 @@ export default function ContactPage() {
                             Research Areas
                         </Link>
                     </div>
-                </div>
+                </Reveal>
             </section>
         </main>
     );

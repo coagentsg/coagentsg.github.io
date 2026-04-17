@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { publications } from '@/data/publications';
 
 export default function PublicationsPage() {
@@ -27,6 +27,8 @@ export default function PublicationsPage() {
         }
         return result;
     }, [selectedYear, searchQuery]);
+
+    const filterKey = `${selectedYear}:${searchQuery.trim().toLowerCase()}`;
 
     const grouped = useMemo(() => {
         const map = {};
@@ -90,15 +92,23 @@ export default function PublicationsPage() {
 
             {/* Publication List */}
             <section className="space-y-24">
-                {grouped.map(([year, papers]) => (
-                    <div key={year}>
+                {grouped.map(([year, papers], groupIndex) => (
+                    <div
+                        key={`${filterKey}:${year}`}
+                        className="animate-in"
+                        style={{ '--animate-delay': `${groupIndex * 70}ms` }}
+                    >
                         <div className="flex items-center gap-4 mb-12">
                             <h2 className="text-3xl font-bold tracking-tight">{year}</h2>
                             <div className="h-[1px] flex-1 bg-zinc-200/50" />
                         </div>
                         <div className="space-y-8">
                             {papers.map((p, i) => (
-                                <article key={i} className="group grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-8 border-b border-zinc-200/30">
+                                <article
+                                    key={`${filterKey}:${year}:${i}`}
+                                    className="group grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-8 border-b border-zinc-200/30 animate-in"
+                                    style={{ '--animate-delay': `${Math.min(i * 35, 280)}ms` }}
+                                >
                                     <div className="md:col-span-2">
                                         <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-blue-50 text-blue-600">
                                             {p.venue}
@@ -133,7 +143,7 @@ export default function PublicationsPage() {
                 ))}
 
                 {filtered.length === 0 && (
-                    <div className="text-center py-20 text-on-surface-variant text-lg">
+                    <div key={`empty:${filterKey}`} className="text-center py-20 text-on-surface-variant text-lg animate-in">
                         No publications found matching your criteria.
                     </div>
                 )}

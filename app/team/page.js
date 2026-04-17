@@ -1,6 +1,5 @@
-'use client';
-
 import Link from 'next/link';
+import Reveal from '@/components/Reveal';
 import { pi, currentMembers } from '@/data/team';
 
 export default function TeamPage() {
@@ -22,7 +21,7 @@ export default function TeamPage() {
 
             {/* Principal Investigator */}
             <section className="mb-40">
-                <div className="bg-surface-container rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
+                <Reveal className="bg-surface-container rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
                     <div className="w-full lg:w-1/3 p-4">
                         <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-100 flex items-center justify-center">
                             {pi.avatar ? (
@@ -65,56 +64,57 @@ export default function TeamPage() {
                             </a>
                         </div>
                     </div>
-                </div>
+                </Reveal>
             </section>
 
             {/* Current Members */}
             <section className="mb-40">
-                <div className="flex items-baseline justify-between mb-16 border-b border-zinc-200/20 pb-6">
+                <Reveal className="flex items-baseline justify-between mb-16 border-b border-zinc-200/20 pb-6">
                     <h2 className="text-3xl font-bold tracking-tight text-on-surface">Research Team</h2>
                     <span className="text-sm font-medium text-on-surface-variant">PhD Students</span>
-                </div>
+                </Reveal>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {currentMembers.map((m) => (
-                        <a
+                    {currentMembers.map((m, index) => (
+                        <Reveal
                             key={m.name}
-                            href={m.homepage}
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="group bg-white p-4 rounded-3xl border border-zinc-100 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500"
+                            variant="up"
+                            delay={index * 70}
                         >
-                            <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-zinc-100 flex items-center justify-center">
-                                {m.avatar ? (
-                                    <img src={m.avatar} alt={m.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
-                                ) : (
-                                    <span className="text-4xl font-bold text-zinc-300 group-hover:text-zinc-400 apple-transition">
-                                        {getInitials(m.name)}
+                            <a href={m.homepage} target="_blank" rel="noopener noreferrer" className="block h-full">
+                                <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-zinc-100 flex items-center justify-center">
+                                    {m.avatar ? (
+                                        <img src={m.avatar} alt={m.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                                    ) : (
+                                        <span className="text-4xl font-bold text-zinc-300 group-hover:text-zinc-400 apple-transition">
+                                            {getInitials(m.name)}
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="px-2 pb-2">
+                                    <h4 className="font-bold text-on-surface mb-1">{m.name}</h4>
+                                    <p className="text-xs text-on-surface-variant leading-snug">{m.role}</p>
+                                    {m.school && <p className="text-xs text-on-surface-variant mb-4 leading-snug">{m.school}</p>}
+                                    {!m.school && <div className="mb-4" />}
+                                    <span className="text-[10px] font-bold tracking-widest uppercase text-primary">
+                                        Homepage
                                     </span>
-                                )}
-                            </div>
-                            <div className="px-2 pb-2">
-                                <h4 className="font-bold text-on-surface mb-1">{m.name}</h4>
-                                <p className="text-xs text-on-surface-variant leading-snug">{m.role}</p>
-                                {m.school && <p className="text-xs text-on-surface-variant mb-4 leading-snug">{m.school}</p>}
-                                {!m.school && <div className="mb-4" />}
-                                <span className="text-[10px] font-bold tracking-widest uppercase text-primary">
-                                    Homepage
-                                </span>
-                            </div>
-                        </a>
+                                </div>
+                            </a>
+                        </Reveal>
                     ))}
                 </div>
             </section>
 
             {/* Group Photos */}
             <section className="mb-40">
-                <div className="flex items-baseline justify-between mb-16 border-b border-zinc-200/20 pb-6">
+                <Reveal className="flex items-baseline justify-between mb-16 border-b border-zinc-200/20 pb-6">
                     <h2 className="text-3xl font-bold tracking-tight text-on-surface">Life at CoAgent Lab</h2>
                     <span className="text-sm font-medium text-on-surface-variant">Moments Together</span>
-                </div>
+                </Reveal>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="md:col-span-2">
+                    <Reveal className="md:col-span-2" variant="scale">
                         <div className="rounded-3xl overflow-hidden group">
                             <img
                                 src="/group/group3.jpg"
@@ -123,8 +123,8 @@ export default function TeamPage() {
                             />
                         </div>
                         <p className="text-xs text-on-surface-variant mt-3 ml-1">SMU & NUS-NExT++ joint jogging, 2025</p>
-                    </div>
-                    <div>
+                    </Reveal>
+                    <Reveal delay={80}>
                         <div className="rounded-3xl overflow-hidden group">
                             <img
                                 src="/group/group2.jpg"
@@ -133,8 +133,8 @@ export default function TeamPage() {
                             />
                         </div>
                         <p className="text-xs text-on-surface-variant mt-3 ml-1">SMU & NUS-NExT++ joint dinner, 2025</p>
-                    </div>
-                    <div>
+                    </Reveal>
+                    <Reveal delay={140}>
                         <div className="rounded-3xl overflow-hidden group">
                             <img
                                 src="/group/group1.jpg"
@@ -143,30 +143,32 @@ export default function TeamPage() {
                             />
                         </div>
                         <p className="text-xs text-on-surface-variant mt-3 ml-1">Board game day, 2025</p>
-                    </div>
+                    </Reveal>
                 </div>
             </section>
 
             {/* Join CTA */}
             <section className="py-32 text-center max-w-2xl mx-auto">
-                <h2 className="text-4xl font-bold text-on-surface mb-6 tracking-tight">Join the Team</h2>
-                <p className="text-lg text-on-surface-variant mb-4 leading-relaxed">
-                    We are actively seeking brilliant minds to contribute to our ongoing research.
-                    Explore PhD opportunities and scholarship programs.
-                </p>
-                <p className="text-red-600 font-medium text-sm leading-relaxed mb-10">
-                    We are recruiting 0–2 new PhD student(s) every intake batch (apply to the PhD program and list Prof. Liao as a potential advisor).
-                    Our group also has multiple positions for summer interns and visiting research students.
-                    Please feel free to email with your CV if you are interested.
-                </p>
-                <a
-                    href="https://scis.smu.edu.sg/phd/online-application"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-primary text-white px-10 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity inline-block"
-                >
-                    Open Positions
-                </a>
+                <Reveal variant="scale">
+                    <h2 className="text-4xl font-bold text-on-surface mb-6 tracking-tight">Join the Team</h2>
+                    <p className="text-lg text-on-surface-variant mb-4 leading-relaxed">
+                        We are actively seeking brilliant minds to contribute to our ongoing research.
+                        Explore PhD opportunities and scholarship programs.
+                    </p>
+                    <p className="text-red-600 font-medium text-sm leading-relaxed mb-10">
+                        We are recruiting 0–2 new PhD student(s) every intake batch (apply to the PhD program and list Prof. Liao as a potential advisor).
+                        Our group also has multiple positions for summer interns and visiting research students.
+                        Please feel free to email with your CV if you are interested.
+                    </p>
+                    <a
+                        href="https://scis.smu.edu.sg/phd/online-application"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-primary text-white px-10 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity inline-block"
+                    >
+                        Open Positions
+                    </a>
+                </Reveal>
             </section>
         </main>
     );

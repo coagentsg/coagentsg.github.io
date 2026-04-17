@@ -18,6 +18,11 @@
 }
 
 /* Base */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
 body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -41,4 +46,87 @@ body {
 ::selection {
   background-color: rgba(0, 122, 255, 0.15);
   color: #007AFF;
+}
+
+/* Scroll reveal */
+.reveal {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  filter: blur(12px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease;
+  transition-delay: var(--reveal-delay);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-up {
+  transform: translate3d(0, 56px, 0);
+}
+
+.reveal-left {
+  transform: translate3d(-56px, 0, 0);
+}
+
+.reveal-right {
+  transform: translate3d(56px, 0, 0);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.parallax {
+  --parallax-y: 0px;
+  transform: translate3d(0, var(--parallax-y), 0);
+  transition: transform 160ms linear;
+  will-change: transform;
+}
+
+.animate-in {
+  --animate-delay: 0ms;
+  animation: fade-slide-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--animate-delay);
+}
+
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, 24px, 0);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-visible,
+  .parallax,
+  .animate-in {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
 }

@@ -1,6 +1,6 @@
-'use client';
-
 import Link from 'next/link';
+import Parallax from '@/components/Parallax';
+import Reveal from '@/components/Reveal';
 import { researchAreas } from '@/data/research';
 import { news } from '@/data/news';
 
@@ -9,16 +9,16 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center bg-black overflow-hidden pt-16">
-        <div className="absolute inset-0 z-0">
+        <Parallax className="absolute inset-0 z-0" offset={90}>
           <img
-            src="/hero-bg.png"
+            src="/scis.jpg"
             alt="AI Lab Background"
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover object-center object-[center_40%] opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/40 via-black/60 to-black opacity-90" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-screen-xl mx-auto px-8 w-full">
+          <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 via-black/40 to-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+        </Parallax>
+        <Parallax className="relative z-10 max-w-screen-xl mx-auto px-8 w-full" offset={-28}>
           <div className="max-w-3xl">
             <h1 className="font-sans text-6xl md:text-8xl text-white font-bold leading-[1.05] tracking-tight mb-8">
               Intelligence.<br />Dialogue.
@@ -42,20 +42,20 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </Parallax>
       </section>
 
 
       {/* Research Updates / News */}
       <section className="bg-surface-low py-20 px-8">
-        <div className="max-w-screen-xl mx-auto">
+        <Reveal className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-baseline mb-16">
             <h2 className="font-sans text-3xl font-bold tracking-tight">Research Updates</h2>
             <Link href="/publications" className="text-primary font-medium hover:underline">View All Publications</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Featured news */}
-            <div className="md:col-span-2 bg-white rounded-2xl p-10 flex flex-col justify-between shadow-sm border border-zinc-200/50">
+            <Reveal className="md:col-span-2 bg-white rounded-2xl p-10 flex flex-col justify-between shadow-sm border border-zinc-200/50">
               <div>
                 <span className="text-on-surface-variant text-xs font-bold uppercase tracking-widest block mb-4">
                   {news[0]?.date}
@@ -72,44 +72,44 @@ export default function Home() {
                   </a>
                 )}
               </div>
-            </div>
+            </Reveal>
 
             {/* Stats card */}
-            <div className="bg-zinc-900 rounded-2xl p-10 flex flex-col justify-between text-white">
+            <Reveal className="bg-zinc-900 rounded-2xl p-10 flex flex-col justify-between text-white" delay={120}>
               <h3 className="font-sans text-2xl font-semibold mb-8 tracking-tight">
                 {news[1]?.text}
               </h3>
               <div className="pt-8 border-t border-white/10">
                 <p className="text-zinc-400 text-sm font-medium tracking-wide uppercase">{news[1]?.date}</p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Small news items */}
             {news.slice(2, 4).map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-10 shadow-sm border border-zinc-200/50 hover:bg-zinc-50 transition-colors group cursor-pointer">
+              <Reveal key={i} className="bg-white rounded-2xl p-10 shadow-sm border border-zinc-200/50 hover:bg-zinc-50 transition-colors group cursor-pointer" delay={180 + (i * 80)}>
                 <span className="text-primary text-xs font-bold uppercase tracking-widest block mb-4">Update</span>
                 <h3 className="font-sans text-xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors">
                   {item.text}
                 </h3>
                 <p className="text-on-surface-variant text-sm mb-6">{item.date}</p>
                 {item.link && <span className="material-symbols-outlined text-zinc-400">open_in_new</span>}
-              </div>
+              </Reveal>
             ))}
 
             {/* Stats */}
-            <div className="bg-white rounded-2xl p-10 shadow-sm border border-zinc-200/50 flex items-center justify-center">
+            <Reveal className="bg-white rounded-2xl p-10 shadow-sm border border-zinc-200/50 flex items-center justify-center" variant="scale" delay={340}>
               <div className="text-center">
                 <p className="text-5xl font-sans font-bold text-zinc-900 mb-1 tracking-tighter">50+</p>
                 <p className="text-[10px] tracking-[0.2em] text-on-surface-variant uppercase font-bold">Publications</p>
               </div>
-            </div>
+            </Reveal>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Latest News */}
       <section className="bg-white py-16 px-8">
-        <div className="max-w-screen-xl mx-auto">
+        <Reveal className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-baseline mb-12">
             <h2 className="font-sans text-2xl font-bold tracking-tight">Latest News</h2>
           </div>
@@ -148,21 +148,21 @@ export default function Home() {
             </div>
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Research Pillars */}
       <section id="research" />
       <section className="bg-white py-20 md:py-28 px-8">
         <div className="max-w-screen-xl mx-auto">
-          <div className="mb-16">
+          <Reveal className="mb-16">
             <h2 className="font-sans text-4xl md:text-5xl font-bold tracking-tight max-w-3xl">
               Building intelligent agents through rigorous research.
             </h2>
-          </div>
+          </Reveal>
           <div className="space-y-12">
             {researchAreas.map((area, i) => (
-              <div key={area.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center`}>
+              <Reveal key={area.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center`} variant={i % 2 === 0 ? 'left' : 'right'} delay={i * 80}>
                 {i % 2 === 1 && (
                   <div className="order-2 lg:order-1">
                     <span className="text-zinc-400 font-bold text-xs tracking-widest uppercase mb-4 block">
@@ -176,7 +176,7 @@ export default function Home() {
                     </Link>
                   </div>
                 )}
-                <div className={`overflow-hidden rounded-2xl bg-zinc-100 ${i % 2 === 1 ? 'order-1 lg:order-2' : ''}`}>
+                <Parallax className={`overflow-hidden rounded-2xl bg-zinc-100 ${i % 2 === 1 ? 'order-1 lg:order-2' : ''}`} offset={i % 2 === 0 ? 34 : -34}>
                   <div className="w-full aspect-[2/1] bg-white flex items-center justify-center relative group">
                     <img
                       src={area.image}
@@ -184,7 +184,7 @@ export default function Home() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                </div>
+                </Parallax>
                 {i % 2 === 0 && (
                   <div>
                     <span className="text-zinc-400 font-bold text-xs tracking-widest uppercase mb-4 block">
@@ -198,7 +198,7 @@ export default function Home() {
                     </Link>
                   </div>
                 )}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-20 px-8 bg-zinc-50">
-        <div className="max-w-screen-md mx-auto text-center">
+        <Reveal className="max-w-screen-md mx-auto text-center" variant="scale">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-sm mb-10 text-primary">
             <span className="material-symbols-outlined text-3xl">science</span>
           </div>
@@ -236,7 +236,7 @@ export default function Home() {
               Contact Us
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );
