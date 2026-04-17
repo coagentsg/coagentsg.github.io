@@ -36,13 +36,19 @@ export default function AlumniPage() {
                             className="group bg-white p-4 rounded-3xl border border-zinc-100 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500"
                         >
                             <div className="aspect-square rounded-2xl overflow-hidden mb-6 bg-zinc-100 flex items-center justify-center">
-                                <span className="text-4xl font-bold text-zinc-300 group-hover:text-zinc-400 apple-transition">
-                                    {getInitials(m.name)}
-                                </span>
+                                {m.avatar ? (
+                                    <img src={m.avatar} alt={m.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                                ) : (
+                                    <span className="text-4xl font-bold text-zinc-300 group-hover:text-zinc-400 apple-transition">
+                                        {getInitials(m.name)}
+                                    </span>
+                                )}
                             </div>
                             <div className="px-2 pb-2">
                                 <h4 className="font-bold text-on-surface mb-1">{m.name}</h4>
-                                <p className="text-xs text-on-surface-variant mb-4 leading-snug">Alumni</p>
+                                <p className="text-xs text-on-surface-variant leading-snug">Alumni</p>
+                                {m.school && <p className="text-xs text-on-surface-variant mb-4 leading-snug">{m.school}</p>}
+                                {!m.school && <div className="mb-4" />}
                                 <span className="text-[10px] font-bold tracking-widest uppercase text-primary">
                                     Homepage
                                 </span>

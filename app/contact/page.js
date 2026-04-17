@@ -44,8 +44,13 @@ export default function ContactPage() {
                 <div className="bg-surface-low rounded-3xl p-10 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-zinc-200">
                     <span className="material-symbols-outlined text-primary text-3xl mb-6 block">school</span>
                     <h3 className="text-xl font-bold text-on-surface mb-4 tracking-tight">Join Us</h3>
-                    <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
+                    {/* <p className="text-on-surface-variant text-sm leading-relaxed mb-4">
                         We are actively seeking motivated PhD students, research assistants, and visiting scholars.
+                    </p> */}
+                    <p className="text-red-600 font-medium text-xs leading-relaxed mb-6">
+                        We are recruiting 0–2 new PhD student(s) every intake batch (apply to the PhD program and list Prof. Liao as a potential advisor).
+                        Our group also has multiple positions for summer interns and visiting research students.
+                        Please feel free to email with your CV if you are interested.
                     </p>
                     <a
                         href="https://scis.smu.edu.sg/phd/online-application"
@@ -100,7 +105,7 @@ export default function ContactPage() {
                             <span className="material-symbols-outlined text-sm">library_books</span>
                             Our Publications
                         </Link>
-                        <Link href="/research" className="text-sm text-zinc-700 hover:text-primary transition-colors font-medium flex items-center gap-2">
+                        <Link href="/#research" className="text-sm text-zinc-700 hover:text-primary transition-colors font-medium flex items-center gap-2">
                             <span className="material-symbols-outlined text-sm">science</span>
                             Research Areas
                         </Link>
