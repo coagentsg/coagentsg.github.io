@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -14,11 +14,16 @@ const navLinks = [
 
 export default function Navbar() {
     const pathname = usePathname();
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [openMenuForPath, setOpenMenuForPath] = useState(null);
+    const mobileOpen = openMenuForPath === pathname;
 
-    useEffect(() => {
-        setMobileOpen(false);
-    }, [pathname]);
+    const toggleMobileMenu = () => {
+        setOpenMenuForPath((currentPath) => (currentPath === pathname ? null : pathname));
+    };
+
+    const closeMobileMenu = () => {
+        setOpenMenuForPath(null);
+    };
 
     return (
         <header className="fixed top-0 w-full z-50 apple-blur border-b border-zinc-200/50">
@@ -52,8 +57,9 @@ export default function Navbar() {
                     </Link>
                     <button
                         className="md:hidden text-zinc-800"
-                        onClick={() => setMobileOpen(!mobileOpen)}
+                        onClick={toggleMobileMenu}
                         aria-label="Toggle menu"
+                        aria-expanded={mobileOpen}
                     >
                         <span className="material-symbols-outlined">{mobileOpen ? 'close' : 'menu'}</span>
                     </button>
@@ -67,6 +73,7 @@ export default function Navbar() {
                         <Link
                             key={l.href}
                             href={l.href}
+                            onClick={closeMobileMenu}
                             className={
                                 pathname === l.href
                                     ? 'text-blue-600 font-semibold text-base'
