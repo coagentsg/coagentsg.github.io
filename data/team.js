@@ -35,7 +35,7 @@ export const currentMembers = [
     },
     {
         name: "Shuai Ling",
-        role: "PhD Student",
+        role: "HIT Shenzhen, co-supervise",
         homepage: "https://scholar.google.com/citations?user=DoXxoQIAAAAJ&hl",
         avatar: "/people/lingshuai.jpg",
     },
