@@ -12,7 +12,7 @@ export const currentMembers = [
     {
         name: "Jinggui Liang",
         role: "PhD Student",
-        homepage: "https://scholar.google.com/citations?user=fDjmQw8AAAAJ&hl",
+        homepage: "https://liangjinggui.github.io/",
         avatar: "/people/liangjinggui.jpg",
     },
     {
